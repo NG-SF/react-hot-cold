@@ -3,9 +3,14 @@ import {shallow, mount} from 'enzyme';
 
 import GuessForm from './guess-form';
 
-describe('<AddForm />', () => {
+describe('<GuessForm />', () => {
     it('Renders without crashing', () => {
         shallow(<GuessForm />);
+    });
+
+    it('Should render an input area', () => {
+        const wrapper = shallow(<GuessForm /> );
+        expect(wrapper.find('input').length).toEqual(1);
     });
 
     it('Should fire the onSubmit callback when the form is submitted', () => {
