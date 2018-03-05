@@ -1,5 +1,5 @@
 import React from 'react';
-import {shallow, mount} from 'enzyme';
+import {shallow} from 'enzyme';
 import GuessCount from './guess-count';
 
 describe('<GuessCount />', () => {
@@ -7,4 +7,8 @@ describe('<GuessCount />', () => {
         shallow(<GuessCount />);
     });
 
+    it('Renders correct information', () => {
+        let wrapper = shallow(<GuessCount guessCount={5} />);
+        expect(wrapper.text()).toEqual("You've made 5 guesses!");
+    });
 });

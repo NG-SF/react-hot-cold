@@ -13,7 +13,7 @@ describe('<GuessForm />', () => {
         expect(wrapper.find('input').length).toEqual(1);
     });
 
-    it('Should fire the onSubmit callback when the form is submitted', () => {
+    it('Should fire the onMakeGuess callback when the form is submitted', () => {
         const callback = jest.fn();
         const wrapper = mount(<GuessForm onMakeGuess={callback} />);
         const value = "42";
@@ -34,5 +34,13 @@ describe('<GuessForm />', () => {
         const wrapper = mount(<GuessForm onSubmit={callback} />);
         wrapper.simulate('submit');
         expect(callback).not.toHaveBeenCalled();
+    });
+
+    it('Should reset the input when form is submitted', () => {
+        const wrapper = mount(<GuessForm />);
+        const input = wrapper.find('input[type="number"]');
+        input.instance().value = "42";
+        wrapper.simulate('submit');
+        expect(input.instance().value).toEqual('');
     });
 });
